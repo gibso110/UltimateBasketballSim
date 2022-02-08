@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace BballSim.Data
 {
@@ -23,5 +18,7 @@ namespace BballSim.Data
         public double Height { get; set; }
         [Required]
         public double PlayerRating { get; set; }
+        [Required]
+        public bool IsOnTeam { get; set; } = false;
     }
 }

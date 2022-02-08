@@ -1,10 +1,7 @@
 ﻿using BballSim.Models.PlayerModels;
 using BballSim.Services;
+using Microsoft.AspNet.Identity;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace UltimateBasketballSim.Controllers
@@ -12,9 +9,10 @@ namespace UltimateBasketballSim.Controllers
     [Authorize]
     public class PlayerController : ApiController
     {
-        private PlayerServices CreatePlayerServices() 
+        private PlayerServices CreatePlayerServices()
         {
-            var playerService = new PlayerServices();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var playerService = new PlayerServices(userId);
             return playerService;
         }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static BballSim.Data.Player;
+﻿using static BballSim.Data.Player;
 
 namespace BballSim.Models.PlayerModels
 {
@@ -15,5 +10,6 @@ namespace BballSim.Models.PlayerModels
         public int Number { get; set; }
         public double Height { get; set; }
         public double PlayerRating { get; set; }
+        public bool IsOnTeam { get; set; }
     }
 }

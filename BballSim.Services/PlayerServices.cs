@@ -3,21 +3,24 @@ using BballSim.Models.PlayerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BballSim.Services
 {
     public class PlayerServices
     {
+        private readonly Guid _userId;
 
-        
+        public PlayerServices(Guid id)
+        {
+            _userId = id;
+        }
+
         public bool CreatePlayer(PlayerCreate model)
         {
             var entity =
                 new Player()
                 {
-                    
+
                     FullName = model.FullName,
                     PlayerPosition = model.PlayerPosition,
                     Number = model.Number,
@@ -52,10 +55,10 @@ namespace BballSim.Services
                             }
                             );
 
-                        return query.ToArray();
-                    
-                    
-                    
+                return query.ToArray();
+
+
+
             }
         }
 
@@ -65,7 +68,7 @@ namespace BballSim.Services
             {
                 var query =
                     ctx
-                        .Players 
+                        .Players
                         .Where(e => e.PlayerId == id)
                         .Select(
                             e =>

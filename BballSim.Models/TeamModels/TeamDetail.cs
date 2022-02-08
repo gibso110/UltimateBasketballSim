@@ -8,9 +8,9 @@ namespace BballSim.Models.TeamModels
 {
     public class TeamDetail
     {
-        public int Id { get; set; }
+        public int TeamId { get; set; }
         public string Name { get; set; }
-        public int PlayerId { get; set; }
+       // public List<Player> Players { get; set; }
         public decimal WLRecord { get; set; }
         public int GamesPlayed { get; set; }
 

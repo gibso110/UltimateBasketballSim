@@ -86,11 +86,37 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202202032340333_InitialCreate.cs" />
+    <Compile Include="Migrations\202202032340333_InitialCreate.Designer.cs">
+      <DependentUpon>202202032340333_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202080507083_InitialMigration.cs" />
+    <Compile Include="Migrations\202202080507083_InitialMigration.Designer.cs">
+      <DependentUpon>202202080507083_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202082321245_addedIsOnTeam.cs" />
+    <Compile Include="Migrations\202202082321245_addedIsOnTeam.Designer.cs">
+      <DependentUpon>202202082321245_addedIsOnTeam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202202032340333_InitialCreate.resx">
+      <DependentUpon>202202032340333_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202080507083_InitialMigration.resx">
+      <DependentUpon>202202080507083_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202082321245_addedIsOnTeam.resx">
+      <DependentUpon>202202082321245_addedIsOnTeam.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

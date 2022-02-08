@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BballSim.Data;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using System;
 using UltimateBasketballSim.Providers;
-using UltimateBasketballSim.Models;
-using BballSim.Data;
 
 namespace UltimateBasketballSim
 {

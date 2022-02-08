@@ -40,6 +40,8 @@ namespace BballSim.Data
                 .Add(new IdentityUserLoginConfiguration())
                 .Add(new IdentityUserRoleConfiguration());
         }
+
+        public DbSet<Player> Players { get; set; }
     }
 
 

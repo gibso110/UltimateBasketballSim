@@ -55,6 +55,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamModels\TeamCreate.cs" />
+    <Compile Include="TeamModels\TeamDetail.cs" />
+    <Compile Include="TeamModels\TeamEdit.cs" />
+    <Compile Include="TeamModels\TeamListItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

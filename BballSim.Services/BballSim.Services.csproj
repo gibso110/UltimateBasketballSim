@@ -54,11 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BballSim.Data\BballSim.Data.csproj">
+      <Project>{22895871-2B84-477A-9C7B-64C0D89F4FDF}</Project>
+      <Name>BballSim.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BballSim.Models\BballSim.Models.csproj">
+      <Project>{6FDE0AD5-F2B0-4441-A9F4-010E51C37394}</Project>
+      <Name>BballSim.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

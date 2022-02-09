@@ -86,17 +86,9 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202202032340333_InitialCreate.cs" />
-    <Compile Include="Migrations\202202032340333_InitialCreate.Designer.cs">
-      <DependentUpon>202202032340333_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202080507083_InitialMigration.cs" />
-    <Compile Include="Migrations\202202080507083_InitialMigration.Designer.cs">
-      <DependentUpon>202202080507083_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202082321245_addedIsOnTeam.cs" />
-    <Compile Include="Migrations\202202082321245_addedIsOnTeam.Designer.cs">
-      <DependentUpon>202202082321245_addedIsOnTeam.cs</DependentUpon>
+    <Compile Include="Migrations\202202090000219_TylersFirstMigration.cs" />
+    <Compile Include="Migrations\202202090000219_TylersFirstMigration.Designer.cs">
+      <DependentUpon>202202090000219_TylersFirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
@@ -108,14 +100,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202032340333_InitialCreate.resx">
-      <DependentUpon>202202032340333_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202080507083_InitialMigration.resx">
-      <DependentUpon>202202080507083_InitialMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202082321245_addedIsOnTeam.resx">
-      <DependentUpon>202202082321245_addedIsOnTeam.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202090000219_TylersFirstMigration.resx">
+      <DependentUpon>202202090000219_TylersFirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

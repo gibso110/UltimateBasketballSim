@@ -26,9 +26,9 @@ namespace BballSim.Services
         {
             Game gameEntity = new Game()
             {
-                Team1 = model.Team1,
+                Team1Id = model.Team1Id,
                 Team1Score = model.Team1Score,
-                Team2 = model.Team2Score,
+                Team2Id = model.Team2Id,
                 Team2Score = model.Team2Score,
                 GameDate = DateTime.Now
             };

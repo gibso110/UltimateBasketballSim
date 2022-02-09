@@ -12,9 +12,9 @@ namespace BballSim.Models.GameModels
     {
         
         [ForeignKey("Team"), Required]
-        public int Team1 { get; set; }
+        public int Team1Id { get; set; }
         [ForeignKey("Team"), Required]
-        public int Team2 { get; set; }
+        public int Team2Id { get; set; }
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
         public DateTime GameDate { get; set; }

@@ -26,7 +26,7 @@ namespace BballSim.Data
         public int PlayerId { get; set; }
         public virtual Player Player { get; set; }
 
-      //  [ForeignKey("League"), Required]
+      // [ForeignKey("League"), Required]
       //  public int LeagueId { get; set; }
       ////  public virtual League League { get; set; }
     }

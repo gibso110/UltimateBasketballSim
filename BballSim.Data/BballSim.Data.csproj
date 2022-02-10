@@ -84,12 +84,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\202202090000219_TylersFirstMigration.cs" />
+    <Compile Include="Migrations\202202090000219_TylersFirstMigration.Designer.cs">
+      <DependentUpon>202202090000219_TylersFirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202202090000219_TylersFirstMigration.resx">
+      <DependentUpon>202202090000219_TylersFirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

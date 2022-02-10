@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BballSim.Data
 {
@@ -20,5 +21,9 @@ namespace BballSim.Data
         public double PlayerRating { get; set; }
         [Required]
         public bool IsOnTeam { get; set; } = false;
+
+        [ForeignKey("Team"), Required]
+        public int? TeamId { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

@@ -89,15 +89,6 @@
   <ItemGroup>
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202202090016128_add-migration firstmigration.cs" />
-    <Compile Include="Migrations\202202090016128_add-migration firstmigration.Designer.cs">
-      <DependentUpon>202202090016128_add-migration firstmigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202202100035149_newmigration.cs" />
-    <Compile Include="Migrations\202202100035149_newmigration.designer.cs">
-      <DependentUpon>202202100035149_newmigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Team.cs" />
@@ -105,14 +96,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202090016128_add-migration firstmigration.resx">
-      <DependentUpon>202202090016128_add-migration firstmigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202202100035149_newmigration.resx">
-      <DependentUpon>202202100035149_newmigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

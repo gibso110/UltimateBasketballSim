@@ -27,89 +27,18 @@ namespace BballSim.Services
             Game gameEntity = new Game()
             {
                 Team1Id = model.Team1Id,
+                Team1Score = model.Team1Score,
                 Team2Id = model.Team2Id,
+                Team2Score = model.Team2Score,
                 GameDate = DateTime.Now
             };
 
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Games.Add(gameEntity);
-                return (ctx.SaveChanges() == 1);
-            }
+            //using (var ctx = new ApplicationDbContext())
+            //{
+            //    ctx.Games.Add(gameEntity);
+            //    return (ctx.SaveChanges() == 1);
+            //}
+            return true;
         }
-
-        //get the game details by game ID
-        //Can this be refactored to return a 'GameDetail'?
-        public IEnumerable<GameDetail> GetGameDetail(int gameId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var gameToReturn = ctx.Games
-                    .Where(g => g.GameId == gameId)
-                    .Select(
-                    g =>
-                    new GameDetail
-                    {
-                        GameId = g.GameId,
-                        Team1Id = g.Team1Id,
-                        Team2Id = g.Team2Id,
-                        Team1Score = g.Team1Score,
-                        Team2Score = g.Team2Score,
-                        GameDate = g.GameDate
-                    }
-                    );
-                return gameToReturn.ToArray();
-            }
-        }
-
-        // get game list, returns all games.
-
-        public IEnumerable<GameList> GetGameList()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var listOfGames = ctx.Games
-                    .Select(g =>
-                    new GameList
-                    {
-                        Team1Id = g.Team1Id,
-                        Team2Id = g.Team2Id,
-                        GameDate = g.GameDate
-                    });
-
-                return listOfGames.ToArray();
-            }
-        }
-
-        //Delete a game
-        public bool DeleteGame(int gameId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var gameToDelete = ctx.Games
-                    .Single(g => g.GameId == gameId);
-
-                ctx.Games.Remove(gameToDelete);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        //update a game
-
-        public bool UpdateGame(int gameId, GameUpdate updatedGame)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                Game gameToUpdate = ctx.Games
-                    .Single(g => g.GameId == gameId);
-
-                gameToUpdate.Team1Score = updatedGame.Team1Score;
-                gameToUpdate.Team2Score = updatedGame.Team2Score;
-
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        //play a game
     }
 }

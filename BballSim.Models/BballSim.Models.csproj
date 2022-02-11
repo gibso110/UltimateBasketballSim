@@ -61,6 +61,9 @@
     <Compile Include="GameModels\GameDetail.cs" />
     <Compile Include="GameModels\GameList.cs" />
     <Compile Include="GameModels\GameUpdate.cs" />
+    <Compile Include="LeagueModels\LeagueCreate.cs" />
+    <Compile Include="LeagueModels\LeagueList.cs" />
+    <Compile Include="LeagueModels\LeagueUpdate.cs" />
     <Compile Include="PlayerModels\PlayerCreate.cs" />
     <Compile Include="PlayerModels\PlayerProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

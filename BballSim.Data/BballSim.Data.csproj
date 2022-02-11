@@ -90,11 +90,6 @@
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="League.cs" />
-    <Compile Include="Migrations\202202102309256_AddedLeagueAndSeason.cs" />
-    <Compile Include="Migrations\202202102309256_AddedLeagueAndSeason.designer.cs">
-      <DependentUpon>202202102309256_AddedLeagueAndSeason.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Season.cs" />

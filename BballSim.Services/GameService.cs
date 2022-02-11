@@ -14,7 +14,6 @@ namespace BballSim.Services
 
         //GameService constructor that the controller will use to create GameService with the
         //user's ID and then use that instance to perform CRUD on Game models.
-
         public GameService(Guid userId)
         {
             _userId = userId;
@@ -40,11 +39,11 @@ namespace BballSim.Services
 
         //get the game details by game ID
         //Can this be refactored to return a 'GameDetail'?
-        public IEnumerable<GameDetail> GetGameDetail(int gameId)
+        public GameDetail GetGameDetail(int gameId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var gameToReturn = ctx.Games
+                GameDetail gameToReturn = (GameDetail)ctx.Games
                     .Where(g => g.GameId == gameId)
                     .Select(
                     g =>
@@ -58,12 +57,11 @@ namespace BballSim.Services
                         GameDate = g.GameDate
                     }
                     );
-                return gameToReturn.ToArray();
+                return gameToReturn;
             }
         }
 
         // get game list, returns all games.
-
         public IEnumerable<GameList> GetGameList()
         {
             using (var ctx = new ApplicationDbContext())
@@ -81,7 +79,7 @@ namespace BballSim.Services
             }
         }
 
-        //Delete a game
+        //Delete a game by ID
         public bool DeleteGame(int gameId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -95,7 +93,6 @@ namespace BballSim.Services
         }
 
         //update a game
-
         public bool UpdateGame(int gameId, GameUpdate updatedGame)
         {
             using (var ctx = new ApplicationDbContext())

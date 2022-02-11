@@ -67,6 +67,9 @@
     <Compile Include="PlayerModels\PlayerCreate.cs" />
     <Compile Include="PlayerModels\PlayerProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeasonModels\SeasonCreate.cs" />
+    <Compile Include="SeasonModels\SeasonDetail.cs" />
+    <Compile Include="SeasonModels\SeasonListItem.cs" />
     <Compile Include="TeamModels\TeamCreate.cs" />
     <Compile Include="TeamModels\TeamDetail.cs" />
     <Compile Include="TeamModels\TeamEdit.cs" />

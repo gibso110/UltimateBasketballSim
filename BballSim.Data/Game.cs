@@ -25,5 +25,9 @@ namespace BballSim.Data
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
         public DateTime GameDate { get; set; }
+        
+        [ForeignKey("Season"), Required]
+        public int SeasonId { get; set; }
+        public virtual Season Season { get; set; }
     }
 }

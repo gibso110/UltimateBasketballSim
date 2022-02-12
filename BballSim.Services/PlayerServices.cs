@@ -85,5 +85,40 @@ namespace BballSim.Services
                 return query.ToArray();
             }
         }
+
+        public bool UpdatePlayer(PlayerEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Players
+                        .Single(e => e.PlayerId == model.PlayerId);
+
+                entity.FullName = model.FullName;
+                entity.PlayerPosition = model.PlayerPosition;
+                entity.Number = model.Number;
+                entity.Height = model.Height;
+                entity.PlayerRating = model.PlayerRating;
+                entity.TeamId = model.TeamId;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeletePlayer(int playerId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Players
+                        .Single(e => e.PlayerId == playerId);
+
+                ctx.Players.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

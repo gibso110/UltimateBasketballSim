@@ -100,8 +100,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202102309256_AddedLeagueAndSeason.resx">
-      <DependentUpon>202202102309256_AddedLeagueAndSeason.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202110116590_InitialMigration.resx">
+      <DependentUpon>202202110116590_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using BballSim.Models.PlayerModels;
+﻿using BballSim.Data;
+using BballSim.Models.PlayerModels;
 using BballSim.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -43,6 +44,27 @@ namespace UltimateBasketballSim.Controllers
             return Ok(player);
         }
 
+        public IHttpActionResult Put(PlayerEdit player)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var service = CreatePlayerServices();
+
+            if (!service.UpdatePlayer(player))
+                return InternalServerError();
+
+            return Ok();
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            var service = CreatePlayerServices();
+
+            if (!service.DeletePlayer(id))
+                return InternalServerError();
+
+            return Ok();
+        }
 
     }
 }

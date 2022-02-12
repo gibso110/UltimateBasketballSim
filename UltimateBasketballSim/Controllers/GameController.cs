@@ -3,9 +3,6 @@ using BballSim.Services;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace UltimateBasketballSim.Controllers
@@ -28,14 +25,14 @@ namespace UltimateBasketballSim.Controllers
             if (ModelState.IsValid == false)
                 return BadRequest(ModelState);
 
-                var gameService = CreateGameService();
+            var gameService = CreateGameService();
 
-                if (gameService.CreateGame(gameToCreate) == true)
-                    return Ok();
-                return InternalServerError();
+            if (gameService.CreateGame(gameToCreate) == true)
+                return Ok();
+            return InternalServerError();
         }
 
-      //  get a list of all games
+        //  get a list of all games
         [HttpGet]
         public IHttpActionResult GetAllGames()
         {

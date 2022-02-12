@@ -90,11 +90,6 @@
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="League.cs" />
-    <Compile Include="Migrations\202202110116590_InitialMigration.cs" />
-    <Compile Include="Migrations\202202110116590_InitialMigration.designer.cs">
-      <DependentUpon>202202110116590_InitialMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Season.cs" />

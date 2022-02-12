@@ -90,6 +90,15 @@
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="League.cs" />
+    <Compile Include="Migrations\202202121535040_InitialMigration.cs" />
+    <Compile Include="Migrations\202202121535040_InitialMigration.designer.cs">
+      <DependentUpon>202202121535040_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202202121550193_updatedTeamIdOnPlayerToNotRequired.cs" />
+    <Compile Include="Migrations\202202121550193_updatedTeamIdOnPlayerToNotRequired.designer.cs">
+      <DependentUpon>202202121550193_updatedTeamIdOnPlayerToNotRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Season.cs" />
@@ -98,6 +107,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202202121535040_InitialMigration.resx">
+      <DependentUpon>202202121535040_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202202121550193_updatedTeamIdOnPlayerToNotRequired.resx">
+      <DependentUpon>202202121550193_updatedTeamIdOnPlayerToNotRequired.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

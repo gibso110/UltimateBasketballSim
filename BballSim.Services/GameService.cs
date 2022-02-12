@@ -1,5 +1,6 @@
 ﻿using BballSim.Data;
 using BballSim.Models.GameModels;
+using BballSim.Models.PlayerModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,12 +92,12 @@ namespace BballSim.Services
         }
 
         //update a game
-        public bool UpdateGame(GameUpdate updatedGame)
+        public bool UpdateGame(int gameId, GameUpdate updatedGame)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 Game gameToUpdate = ctx.Games
-                    .Single(g => g.GameId == updatedGame.GameId);
+                    .Single(g => g.GameId == gameId);
 
                 gameToUpdate.Team1Score = updatedGame.Team1Score;
                 gameToUpdate.Team2Score = updatedGame.Team2Score;
@@ -107,13 +108,13 @@ namespace BballSim.Services
 
         //play a game
 
-        public bool PlayAGame(Team team1, Team team2, Game game)
+        public bool PlayAGame(int team1Id, int team2Id, int gameId)
         {
             PlayerServices playerService = new PlayerServices(_userId);
 
-            List<Player> team1Players = (List<Player>) playerService.GetPlayersByTeamId(team1.TeamId);
+            List<PlayerProperties> team1Players = (List<PlayerProperties>)playerService.GetPlayersByTeamId(team1Id);
 
-            List<Player> team2Players = (List<Player>)playerService.GetPlayersByTeamId(team2.TeamId);
+            List<PlayerProperties> team2Players = (List<PlayerProperties>)playerService.GetPlayersByTeamId(team2Id);
 
             int team1Score = 0;
             int team2Score = 0;
@@ -128,14 +129,14 @@ namespace BballSim.Services
             {
                 var rand = new Random();
 
-                team1Score += (int)rand.NextDouble() * 13;
+                team1Score += (int)(rand.NextDouble() * 13);
             }
 
             for (int i = 0; i < team2NumRolls; i++)
             {
                 var rand = new Random();
 
-                team2Score += (int)rand.NextDouble() * 13;
+                team2Score += (int)(rand.NextDouble() * 13);
             }
 
             GameService gameService = new GameService(_userId);
@@ -146,7 +147,7 @@ namespace BballSim.Services
                 Team2Score = team2Score
             };
 
-           return gameService.UpdateGame(gameResults);
+           return gameService.UpdateGame(gameId, gameResults);
 
         }
     }

@@ -20,18 +20,18 @@ namespace UltimateBasketballSim.Controllers
         }
 
         //create a new game
-        [HttpPost]
-        public IHttpActionResult CreateGame(GameCreate gameToCreate)
-        {
-            if (ModelState.IsValid == false)
-                return BadRequest(ModelState);
+        //[HttpPost]
+        //public IHttpActionResult CreateGame(GameCreate gameToCreate)
+        //{
+        //    if (ModelState.IsValid == false)
+        //        return BadRequest(ModelState);
 
-            var gameService = CreateGameService();
+        //    var gameService = CreateGameService();
 
-            if (gameService.CreateGame(gameToCreate) == true)
-                return Ok();
-            return InternalServerError();
-        }
+        //    if (gameService.CreateGame(gameToCreate) == true)
+        //        return Ok();
+        //    return InternalServerError();
+        //}
 
         //  get a list of all games
         [HttpGet]
@@ -53,7 +53,7 @@ namespace UltimateBasketballSim.Controllers
         public IHttpActionResult UpdateAGame([FromBody] int gameId, GameUpdate updatedGame)
         {
             GameService gameService = CreateGameService();
-            if (gameService.UpdateGame(updatedGame))
+            if (gameService.UpdateGame(gameId, updatedGame))
                 return Ok();
 
             return InternalServerError();
@@ -85,11 +85,11 @@ namespace UltimateBasketballSim.Controllers
         }
         //play a game
         [HttpPost]
-        public IHttpActionResult PlayAGame([FromBody]Team team1, Team team2, Game game)
+        public IHttpActionResult PostPlayAGame(int team1Id, int team2Id, int gameId)
         {
             var gameService = CreateGameService();
 
-            if (gameService.PlayAGame(team1, team2, game))
+            if (gameService.PlayAGame(team1Id, team2Id, gameId))
                 return Ok();
 
             return InternalServerError();

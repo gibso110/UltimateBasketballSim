@@ -91,12 +91,12 @@ namespace BballSim.Services
         }
 
         //update a game
-        public bool UpdateGame(int gameId, GameUpdate updatedGame)
+        public bool UpdateGame(GameUpdate updatedGame)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 Game gameToUpdate = ctx.Games
-                    .Single(g => g.GameId == gameId);
+                    .Single(g => g.GameId == updatedGame.GameId);
 
                 gameToUpdate.Team1Score = updatedGame.Team1Score;
                 gameToUpdate.Team2Score = updatedGame.Team2Score;
@@ -106,5 +106,48 @@ namespace BballSim.Services
         }
 
         //play a game
+
+        public bool PlayAGame(Team team1, Team team2, Game game)
+        {
+            PlayerServices playerService = new PlayerServices(_userId);
+
+            List<Player> team1Players = (List<Player>) playerService.GetPlayersByTeamId(team1.TeamId);
+
+            List<Player> team2Players = (List<Player>)playerService.GetPlayersByTeamId(team2.TeamId);
+
+            int team1Score = 0;
+            int team2Score = 0;
+
+            int team1AvgPlayerRating = (int)(from p in team1Players select p.PlayerRating).Sum()/5;
+            int team2AvgPlayerRating = (int)(from p in team2Players select p.PlayerRating).Sum()/5;
+
+            int team1NumRolls = team1AvgPlayerRating / 10;
+            int team2NumRolls = team2AvgPlayerRating / 10;
+
+            for (int i = 0; i < team1NumRolls; i++)
+            {
+                var rand = new Random();
+
+                team1Score += (int)rand.NextDouble() * 13;
+            }
+
+            for (int i = 0; i < team2NumRolls; i++)
+            {
+                var rand = new Random();
+
+                team2Score += (int)rand.NextDouble() * 13;
+            }
+
+            GameService gameService = new GameService(_userId);
+
+            GameUpdate gameResults = new GameUpdate()
+            {
+                Team1Score = team1Score,
+                Team2Score = team2Score
+            };
+
+           return gameService.UpdateGame(gameResults);
+
+        }
     }
 }

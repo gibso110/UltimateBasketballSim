@@ -24,7 +24,9 @@ namespace BballSim.Services
             Game gameEntity = new Game()
             {
                 Team1Id = model.Team1Id,
+                Team1Score = model.Team1Score,
                 Team2Id = model.Team2Id,
+                Team2Score = model.Team2Score,
                 GameDate = DateTime.Now
             };
 
@@ -104,7 +106,5 @@ namespace BballSim.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
-        //play a game
     }
 }

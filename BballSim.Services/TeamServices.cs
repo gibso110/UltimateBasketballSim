@@ -1,6 +1,4 @@
-﻿using BballSim.Data;
-using BballSim.Models.TeamModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,88 +11,6 @@ namespace BballSim.Services
         public TeamServices(Guid userId)
         {
             _userId = userId;
-        }
-
-        public bool CreateTeam(TeamCreate model)
-        {
-            var entity =
-                new Team()
-                {
-                    TeamId = model.TeamId,
-                    TeamName = model.TeamName
-                };
-
-            using (var ctx = new ApplicationDbContext())
-            {
-                ctx.Teams.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public IEnumerable<TeamListItem> GetAllTeams()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Teams
-                        .Select(
-                            t =>
-                                new TeamListItem
-                                {
-                                    TeamId = t.TeamId,
-                                    TeamName = t.TeamName,
-                                    WLRecord = t.WLRecord
-                                }
-                                );
-                return query.ToArray();
-            }
-        }
-
-        public IEnumerable<TeamListItem> GetTeamById(int teamId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                    .Teams.Where(t => t.TeamId == teamId)
-                    .Select(
-                        t =>
-                            new TeamListItem
-                            {
-                                TeamId = t.TeamId,
-                                TeamName = t.TeamName,
-                                WLRecord = t.WLRecord
-                            }
-                            );
-                return query.ToArray();
-            }
-        }
-
-        public bool UpdateTeam(TeamEdit model)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Teams
-                        .Single(e => e.TeamId == model.TeamId);
-                entity.TeamName = model.TeamName;
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public bool DeleteTeam(int teamId)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Teams
-                        .Single(e => e.TeamId == teamId);
-                ctx.Teams.Remove(entity);
-                return ctx.SaveChanges() == 1;
-            }
         }
     }
 }

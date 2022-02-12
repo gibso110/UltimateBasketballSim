@@ -1,4 +1,5 @@
-﻿using BballSim.Models.GameModels;
+﻿using BballSim.Data;
+using BballSim.Models.GameModels;
 using BballSim.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -52,7 +53,7 @@ namespace UltimateBasketballSim.Controllers
         public IHttpActionResult UpdateAGame([FromBody] int gameId, GameUpdate updatedGame)
         {
             GameService gameService = CreateGameService();
-            if (gameService.UpdateGame(gameId, updatedGame))
+            if (gameService.UpdateGame(updatedGame))
                 return Ok();
 
             return InternalServerError();
@@ -83,5 +84,15 @@ namespace UltimateBasketballSim.Controllers
             return InternalServerError();
         }
         //play a game
+        [HttpPost]
+        public IHttpActionResult PlayAGame([FromBody]Team team1, Team team2, Game game)
+        {
+            var gameService = CreateGameService();
+
+            if (gameService.PlayAGame(team1, team2, game))
+                return Ok();
+
+            return InternalServerError();
+        }
     }
 }

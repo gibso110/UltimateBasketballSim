@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BballSim.Data
 {
@@ -25,7 +21,7 @@ namespace BballSim.Data
         public int Team1Score { get; set; }
         public int Team2Score { get; set; }
         public DateTime GameDate { get; set; }
-        
+
         [ForeignKey("Season"), Required]
         public int SeasonId { get; set; }
         public virtual Season Season { get; set; }

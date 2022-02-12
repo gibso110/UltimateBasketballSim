@@ -90,9 +90,9 @@
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="League.cs" />
-    <Compile Include="Migrations\202202102309256_AddedLeagueAndSeason.cs" />
-    <Compile Include="Migrations\202202102309256_AddedLeagueAndSeason.designer.cs">
-      <DependentUpon>202202102309256_AddedLeagueAndSeason.cs</DependentUpon>
+    <Compile Include="Migrations\202202110116590_InitialMigration.cs" />
+    <Compile Include="Migrations\202202110116590_InitialMigration.designer.cs">
+      <DependentUpon>202202110116590_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
@@ -105,8 +105,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202102309256_AddedLeagueAndSeason.resx">
-      <DependentUpon>202202102309256_AddedLeagueAndSeason.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202110116590_InitialMigration.resx">
+      <DependentUpon>202202110116590_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

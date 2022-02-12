@@ -19,8 +19,6 @@ namespace BballSim.Data
         public double Height { get; set; }
         [Required]
         public double PlayerRating { get; set; }
-        [Required]
-        public bool IsOnTeam { get; set; } = false;
 
         [ForeignKey("Team"), Required]
         public int? TeamId { get; set; }

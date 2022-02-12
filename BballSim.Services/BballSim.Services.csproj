@@ -61,6 +61,7 @@
     <Compile Include="LeagueService.cs" />
     <Compile Include="PlayerServices.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeasonService.cs" />
     <Compile Include="TeamServices.cs" />
   </ItemGroup>
   <ItemGroup>

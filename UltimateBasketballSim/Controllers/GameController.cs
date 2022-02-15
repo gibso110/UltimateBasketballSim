@@ -85,7 +85,7 @@ namespace UltimateBasketballSim.Controllers
         }
         //play a game
         [HttpPost]
-        public IHttpActionResult PostPlayAGame(int team1Id, int team2Id, int gameId)
+        public IHttpActionResult PlayAGame([FromBody] int team1Id, int team2Id, int gameId)
         {
             var gameService = CreateGameService();
 

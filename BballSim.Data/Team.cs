@@ -11,10 +11,10 @@ namespace BballSim.Data
         public string TeamName { get; set; }
 
         [Required]
-        public decimal WLRecord { get; set; }
+        public int WLRecord { get; set; } = 0;
 
         [Required]
-        public int GamesPlayed { get; set; }
+        public int GamesPlayed { get; set; } = 0;
 
         //  [ForeignKey("League"), Required]
         // [ForeignKey("League"), Required]

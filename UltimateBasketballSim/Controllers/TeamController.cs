@@ -28,14 +28,15 @@ namespace UltimateBasketballSim.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Put(TeamEdit team)
+        [HttpPut]
+        public IHttpActionResult UpdateTeamById(TeamEdit team, int teamId)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateTeamService();
 
-            if (!service.UpdateTeam(team))
+            if (!service.UpdateTeam(team, teamId))
                 return InternalServerError();
 
             return Ok();

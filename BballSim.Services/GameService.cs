@@ -43,21 +43,18 @@ namespace BballSim.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                GameDetail gameToReturn = (GameDetail)ctx.Games
-                    .Where(g => g.GameId == gameId)
-                    .Select(
-                    g =>
-                    new GameDetail
-                    {
-                        GameId = g.GameId,
-                        Team1Id = g.Team1Id,
-                        Team2Id = g.Team2Id,
-                        Team1Score = g.Team1Score,
-                        Team2Score = g.Team2Score,
-                        GameDate = g.GameDate
-                    }
-                    );
-                return gameToReturn;
+                var gameToReturn = ctx.Games
+                    .Single(g => g.GameId == gameId);
+
+                return new GameDetail
+                {
+                    GameId = gameToReturn.GameId,
+                    Team1Id = gameToReturn.Team1Id,
+                    Team2Id = gameToReturn.Team2Id,
+                    Team1Score = gameToReturn.Team1Score,
+                    Team2Score = gameToReturn.Team2Score,
+                    GameDate = gameToReturn.GameDate
+                };
             }
         }
 
@@ -92,7 +89,7 @@ namespace BballSim.Services
             }
         }
 
-        //update a game
+        //update a game by GameId
         public bool UpdateGame(int gameId, GameUpdate updatedGame)
         {
             using (var ctx = new ApplicationDbContext())
@@ -107,14 +104,11 @@ namespace BballSim.Services
             }
         }
 
-        //play a game
-
+        //play a game, pass int two team IDs and a game ID
         public bool PlayAGame(int team1Id, int team2Id, int gameId)
         {
             PlayerServices playerService = new PlayerServices(_userId);
-
             List<PlayerProperties> team1Players = (List<PlayerProperties>)playerService.GetPlayersByTeamId(team1Id);
-
             List<PlayerProperties> team2Players = (List<PlayerProperties>)playerService.GetPlayersByTeamId(team2Id);
 
             int team1Score = 0;
@@ -122,12 +116,15 @@ namespace BballSim.Services
 
             var rand = new Random();
 
+            // Calculate the average player rating of each team and assign it to local variable.
             int team1AvgPlayerRating = (int)(from p in team1Players select p.PlayerRating).Sum()/5;
             int team2AvgPlayerRating = (int)(from p in team2Players select p.PlayerRating).Sum()/5;
 
+            //Determin number of chances to score points for each team:
             int team1NumRolls = team1AvgPlayerRating / 10;
             int team2NumRolls = team2AvgPlayerRating / 10;
 
+            // Add to the scores of each team based on the number of "rolls" they get calculated using the team's average player rating.
             for (int i = 0; i < team1NumRolls; i++)
             {
                 team1Score += (int)(rand.NextDouble() * 13);
@@ -144,17 +141,32 @@ namespace BballSim.Services
                 team2Score += (int)(rand.NextDouble() * 13);
             }
 
+            //call to update the teams using method in this class. Should have exception handling
+             UpdateTeamsAfterGame(team1Id, team2Id, team1Score, team2Score);
+
+            //Update the game with the scores of the teams.
+            GameService gameService = new GameService(_userId);
+            GameUpdate gameResults = new GameUpdate()
+            {
+                Team1Score = team1Score,
+                Team2Score = team2Score
+            };
+            return gameService.UpdateGame(gameId, gameResults);
+        }
+
+        //update teams after a game (WLRecord and games played)
+        public void UpdateTeamsAfterGame(int team1Id, int team2Id, int team1Score, int team2Score)
+        {
             // Updating teams based on game results
             TeamServices teamService = new TeamServices(_userId);
             TeamDetail team1 = teamService.GetTeamById(team1Id);
             TeamDetail team2 = teamService.GetTeamById(team2Id);
 
-            // Determining which team wins then adding 1 to their WLRecord
+            // Determining which team wins then adding 1 to their WLRecord, add 1 to both team's GamesPlayed
             if (team1Score > team2Score)
             {
-                int currentWLRecord = team1.WLRecord;
                 TeamEdit winner = new TeamEdit();
-                winner.WLRecord = currentWLRecord + 1;
+                winner.WLRecord++;
                 winner.GamesPlayed++;
                 teamService.UpdateTeam(winner, team1Id);
 
@@ -164,10 +176,8 @@ namespace BballSim.Services
             }
             else if (team2Score > team1Score)
             {
-               
-                int currentWLRecord = team2.WLRecord;
                 TeamEdit winner = new TeamEdit();
-                winner.WLRecord = currentWLRecord + 1;
+                winner.WLRecord++;
                 winner.GamesPlayed++;
                 teamService.UpdateTeam(winner, team2Id);
 
@@ -175,16 +185,6 @@ namespace BballSim.Services
                 loser.GamesPlayed++;
                 teamService.UpdateTeam(loser, team1Id);
             }
-
-            GameService gameService = new GameService(_userId);
-
-            GameUpdate gameResults = new GameUpdate()
-            {
-                Team1Score = team1Score,
-                Team2Score = team2Score
-            };
-
-            return gameService.UpdateGame(gameId, gameResults);
         }
     }
 }

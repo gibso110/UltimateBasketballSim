@@ -62,27 +62,24 @@ namespace BballSim.Services
             }
         }
 
-        public IEnumerable<PlayerProperties> GetPlayerById(int id)
+        public PlayerProperties GetPlayerById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Players
-                        .Where(e => e.PlayerId == id)
-                        .Select(
-                            e =>
-                            new PlayerProperties
-                            {
-                                PlayerId = e.PlayerId,
-                                FullName = e.FullName,
-                                PlayerPosition = e.PlayerPosition,
-                                Number = e.Number,
-                                Height = e.Height,
-                                PlayerRating = e.PlayerRating
-                            }
-                        );
-                return query.ToArray();
+                        .Single(e => e.PlayerId == id);
+
+                return new PlayerProperties
+                {
+                    PlayerId = query.PlayerId,
+                    FullName = query.FullName,
+                    PlayerPosition = query.PlayerPosition,
+                    Number = query.Number,
+                    Height = query.Height,
+                    PlayerRating = query.PlayerRating
+                };
             }
         }
 

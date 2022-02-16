@@ -54,20 +54,16 @@ namespace BballSim.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                TeamDetail query =
-                    (TeamDetail)ctx
-                    .Teams.Where(t => t.TeamId == teamId)
-                    .Select(
-                        t =>
-                            new TeamDetail
-                            {
-                                TeamId = t.TeamId,
-                                TeamName = t.TeamName,
-                                WLRecord = t.WLRecord,
-                                GamesPlayed = t.GamesPlayed
-                            }
-                            );
-                return query;
+                var query = ctx
+                    .Teams.Single(t => t.TeamId == teamId);
+
+                return new TeamDetail
+                {
+                    TeamId = query.TeamId,
+                    TeamName = query.TeamName,
+                    WLRecord = query.WLRecord,
+                    GamesPlayed = query.GamesPlayed
+                };
             }
         }
 
@@ -79,7 +75,6 @@ namespace BballSim.Services
                     ctx
                         .Teams
                         .Single(e => e.TeamId == teamId);
-                entity.TeamName = model.TeamName;
                 entity.WLRecord = model.WLRecord;
                 entity.GamesPlayed = model.GamesPlayed;
                 return ctx.SaveChanges() == 1;

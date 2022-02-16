@@ -59,7 +59,7 @@ namespace UltimateBasketballSim.Controllers
             return Ok(team);
         }
 
-        public IHttpActionResult GetAllTeam()
+        public IHttpActionResult GetAllTeams()
         {
             TeamServices service = CreateTeamService();
             var team = service.GetAllTeams();

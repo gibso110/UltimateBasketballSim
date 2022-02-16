@@ -2,8 +2,8 @@
 {
     public class TeamEdit
     {
-        public int TeamId { get; set; }
         public string TeamName { get; set; }
-
+        public int WLRecord { get; set; }
+        public int GamesPlayed { get; set; }
     }
 }

@@ -20,7 +20,6 @@ namespace BballSim.Services
             var entity =
                 new Team()
                 {
-                    TeamId = model.TeamId,
                     TeamName = model.TeamName
                 };
 
@@ -51,35 +50,38 @@ namespace BballSim.Services
             }
         }
 
-        public IEnumerable<TeamListItem> GetTeamById(int teamId)
+        public TeamDetail GetTeamById(int teamId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
+                TeamDetail query =
+                    (TeamDetail)ctx
                     .Teams.Where(t => t.TeamId == teamId)
                     .Select(
                         t =>
-                            new TeamListItem
+                            new TeamDetail
                             {
                                 TeamId = t.TeamId,
                                 TeamName = t.TeamName,
-                                WLRecord = t.WLRecord
+                                WLRecord = t.WLRecord,
+                                GamesPlayed = t.GamesPlayed
                             }
                             );
-                return query.ToArray();
+                return query;
             }
         }
 
-        public bool UpdateTeam(TeamEdit model)
+        public bool UpdateTeam(TeamEdit model, int teamId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Teams
-                        .Single(e => e.TeamId == model.TeamId);
+                        .Single(e => e.TeamId == teamId);
                 entity.TeamName = model.TeamName;
+                entity.WLRecord = model.WLRecord;
+                entity.GamesPlayed = model.GamesPlayed;
                 return ctx.SaveChanges() == 1;
             }
         }

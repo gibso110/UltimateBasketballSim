@@ -66,5 +66,16 @@ namespace UltimateBasketballSim.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public IHttpActionResult AssignFreeAgentsToTeam(int teamId)
+        {
+            var service = CreatePlayerServices();
+
+            if (!service.AssignFreeAgentTeamId(teamId))
+                return InternalServerError();
+
+            return Ok();
+        }
+
     }
 }

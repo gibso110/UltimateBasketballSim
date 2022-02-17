@@ -10,6 +10,6 @@ namespace BballSim.Models.PlayerModels
         public int Number { get; set; }
         public double Height { get; set; }
         public double PlayerRating { get; set; }
-        public int TeamId { get; set; }
+        public int ? TeamId { get; set; }
     }
 }

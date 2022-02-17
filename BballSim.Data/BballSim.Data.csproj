@@ -87,9 +87,9 @@
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="League.cs" />
-    <Compile Include="Migrations\202202160132158_RefinedEntities.cs" />
-    <Compile Include="Migrations\202202160132158_RefinedEntities.designer.cs">
-      <DependentUpon>202202160132158_RefinedEntities.cs</DependentUpon>
+    <Compile Include="Migrations\202202170152073_NewMigration.cs" />
+    <Compile Include="Migrations\202202170152073_NewMigration.designer.cs">
+      <DependentUpon>202202170152073_NewMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
@@ -102,8 +102,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202160132158_RefinedEntities.resx">
-      <DependentUpon>202202160132158_RefinedEntities.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202202170152073_NewMigration.resx">
+      <DependentUpon>202202170152073_NewMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

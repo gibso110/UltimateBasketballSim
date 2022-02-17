@@ -197,7 +197,7 @@ namespace BballSim.Services
             List<PlayerProperties> listOfFreeAgents = (List<PlayerProperties>)GetFreeAgents();
 
             // Make sure there are at least 5 Free Agents
-            if (listOfFreeAgents.Count() <= 5)
+            if (listOfFreeAgents.Count() < 5)
                 return false;
 
             //add add'l checks for one player of each position

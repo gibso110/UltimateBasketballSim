@@ -50,15 +50,37 @@ namespace BballSim.Services
                                 PlayerPosition = e.PlayerPosition,
                                 Number = e.Number,
                                 Height = e.Height,
-                                PlayerRating = e.PlayerRating
-
+                                PlayerRating = e.PlayerRating,
+                                TeamId = e.TeamId
                             }
                             );
 
                 return query.ToArray();
+            }
+        }
 
-
-
+        public IEnumerable<PlayerProperties> GetFreeAgents()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                ctx
+                    .Players
+                    .Where(e => e.TeamId == null)
+                    .Select(
+                        e =>
+                            new PlayerProperties
+                            {
+                                PlayerId = e.PlayerId,
+                                FullName = e.FullName,
+                                PlayerPosition = e.PlayerPosition,
+                                Number = e.Number,
+                                Height = e.Height,
+                                PlayerRating = e.PlayerRating,
+                                TeamId = e.TeamId
+                            }
+                            );
+                return query.ToList();
             }
         }
 
@@ -78,7 +100,8 @@ namespace BballSim.Services
                     PlayerPosition = query.PlayerPosition,
                     Number = query.Number,
                     Height = query.Height,
-                    PlayerRating = query.PlayerRating
+                    PlayerRating = query.PlayerRating,
+                    TeamId = query.TeamId
                 };
             }
         }
@@ -100,7 +123,8 @@ namespace BballSim.Services
                                 PlayerPosition = e.PlayerPosition,
                                 Number = e.Number,
                                 Height = e.Height,
-                                PlayerRating = e.PlayerRating
+                                PlayerRating = e.PlayerRating,
+                                TeamId = e.TeamId
                             }
                         );
                 return query.ToList();
@@ -127,6 +151,21 @@ namespace BballSim.Services
             }
         }
 
+        public bool UpdateTeamIdForPlayer(int playerId, PlayerEditTeamId model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Players
+                        .Single(e => e.PlayerId == playerId);
+
+                entity.TeamId = model.TeamId;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public bool DeletePlayer(int playerId)
         {
             using (var ctx = new ApplicationDbContext())
@@ -140,6 +179,47 @@ namespace BballSim.Services
 
                 return ctx.SaveChanges() == 1;
             }
+        }
+
+        public bool AssignFreeAgentTeamId(int teamId)
+        {
+            // make sure the team doesn't currently have any players assigned:
+            //select Count of players with this teamId, if greater than zero, return false.
+            int numberOfPlayersOnTeam;
+            using (var ctx = new ApplicationDbContext())
+            {
+                numberOfPlayersOnTeam = ctx.Players.Where(n => n.TeamId == teamId).Count();
+            }
+            if (numberOfPlayersOnTeam > 0)
+                return false;
+
+            //Get list of all players not yet assigned a TeamId
+            List<PlayerProperties> listOfFreeAgents = (List<PlayerProperties>)GetFreeAgents();
+
+            // Make sure there are at least 5 Free Agents
+            if (listOfFreeAgents.Count() <= 5)
+                return false;
+
+            //add add'l checks for one player of each position
+
+            // For each position (index in the Position enum)
+            //Find the first player of that position and assign them to the team passed in.
+            for (int i = 0; i <= 4; i++)
+            {
+                //find a player with position == i and assign them to the team passed into the method.
+                int existingPlayerId = listOfFreeAgents.Find(p => ((int)p.PlayerPosition) == i).PlayerId;
+                PlayerEditTeamId playerToUpdate = new PlayerEditTeamId()
+                {
+                    TeamId = teamId
+                };
+                //listOfFreeAgents.Remove();
+                UpdateTeamIdForPlayer(existingPlayerId, playerToUpdate);
+            }
+
+            //check to see if there are 5 less players without team IDs on the free agent list
+            if (GetFreeAgents().Count() == listOfFreeAgents.Count() - 5)
+                return true;
+            return false;
         }
     }
 }

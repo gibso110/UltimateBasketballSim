@@ -87,10 +87,6 @@
     <Compile Include="Game.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="League.cs" />
-    <Compile Include="Migrations\202202160132158_RefinedEntities.cs" />
-    <Compile Include="Migrations\202202160132158_RefinedEntities.designer.cs">
-      <DependentUpon>202202160132158_RefinedEntities.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,11 +96,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202202160132158_RefinedEntities.resx">
-      <DependentUpon>202202160132158_RefinedEntities.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

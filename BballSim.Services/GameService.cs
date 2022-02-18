@@ -127,18 +127,18 @@ namespace BballSim.Services
             // Add to the scores of each team based on the number of "rolls" they get calculated using the team's average player rating.
             for (int i = 0; i < team1NumRolls; i++)
             {
-                team1Score += (int)(rand.NextDouble() * 13);
+                team1Score += (int)(rand.NextDouble() * 26);
             }
 
             for (int i = 0; i < team2NumRolls; i++)
             {           
-                team2Score += (int)(rand.NextDouble() * 13);
+                team2Score += (int)(rand.NextDouble() * 26);
             }
 
             while (team1Score == team2Score)
             {
-                team1Score += (int)(rand.NextDouble() * 13);
-                team2Score += (int)(rand.NextDouble() * 13);
+                team1Score += (int)(rand.NextDouble() * 26);
+                team2Score += (int)(rand.NextDouble() * 26);
             }
 
             //call to update the teams using method in this class. Should have exception handling

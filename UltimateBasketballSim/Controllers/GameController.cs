@@ -9,7 +9,7 @@ using System.Web.Http;
 namespace UltimateBasketballSim.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Game")]
+   // [RoutePrefix("api/Game")]
     public class GameController : ApiController
     {
         private GameService CreateGameService()

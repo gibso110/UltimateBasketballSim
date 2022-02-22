@@ -9,7 +9,7 @@ namespace BballSim.Models.PlayerModels
 {
     public class PlayerEditTeamId
     {
-        [Required]
+        
         public int TeamId { get; set; }
     }
 }

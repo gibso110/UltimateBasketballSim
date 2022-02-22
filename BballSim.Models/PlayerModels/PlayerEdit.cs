@@ -26,7 +26,7 @@ namespace BballSim.Models.PlayerModels
         
         [Range(10, 99, ErrorMessage = "Please enter a height between 10 and 99 inches")]
         public int PlayerRating { get; set; }
-        
+        [Required]
         public int TeamId { get; set; }
     }
 }

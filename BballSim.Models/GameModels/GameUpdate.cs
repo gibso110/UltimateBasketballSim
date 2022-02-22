@@ -1,14 +1,15 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BballSim.Models.GameModels
 {
     public class GameUpdate
     {
-        //public int GameId { get; set; }
-        //public int Team1Id { get; set; }
-        //public int Team2Id { get; set; }
+        
+        [Required, Range(00, 200, ErrorMessage = "Invalid Score (00-200)")]
         public int Team1Score { get; set; }
+
+        [Required, Range(00, 200, ErrorMessage = "Invalid Score (00-200)")]
         public int Team2Score { get; set; }
-        //public DateTime GameDate { get; set; }
     }
 }

@@ -47,17 +47,6 @@ namespace UltimateBasketballSim.Controllers
             return InternalServerError();
         }
 
-        //update a game
-        [HttpPut]
-        public IHttpActionResult UpdateAGame([FromBody] int gameId, GameUpdate updatedGame)
-        {
-            GameService gameService = CreateGameService();
-            if (gameService.UpdateGame(gameId, updatedGame))
-                return Ok();
-
-            return InternalServerError();
-        }
-
         //delete a game
         [HttpDelete]
         public IHttpActionResult DeleteAGame([FromBody] int gameId)
@@ -82,6 +71,7 @@ namespace UltimateBasketballSim.Controllers
 
             return InternalServerError();
         }
+
         //play a game
         [HttpPost]
         public IHttpActionResult PlayAGame(int team1Id, int team2Id, int gameId)

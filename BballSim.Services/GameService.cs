@@ -27,7 +27,8 @@ namespace BballSim.Services
             {
                 Team1Id = model.Team1Id,
                 Team2Id = model.Team2Id,
-                GameDate = DateTime.Now
+                GameDate = DateTime.Now,
+                SeasonId = model.SeasonId
             };
 
             using (var ctx = new ApplicationDbContext())
@@ -161,28 +162,32 @@ namespace BballSim.Services
             TeamServices teamService = new TeamServices(_userId);
             TeamDetail team1 = teamService.GetTeamById(team1Id);
             TeamDetail team2 = teamService.GetTeamById(team2Id);
+            int team1WLRecord = team1.WLRecord;
+            int team2WLRecord = team2.WLRecord;
+            int team1GamesPlayed = team1.GamesPlayed;
+            int team2GamesPlayed = team2.GamesPlayed;
 
             // Determining which team wins then adding 1 to their WLRecord, add 1 to both team's GamesPlayed
             if (team1Score > team2Score)
             {
                 TeamEdit winner = new TeamEdit();
-                winner.WLRecord++;
-                winner.GamesPlayed++;
+                winner.WLRecord = team1WLRecord + 1;
+                winner.GamesPlayed = team1GamesPlayed + 1; 
                 teamService.UpdateTeam(winner, team1Id);
 
                 TeamEdit loser = new TeamEdit();
-                loser.GamesPlayed++;
+                loser.GamesPlayed = team2GamesPlayed + 1;
                 teamService.UpdateTeam(loser, team2Id);
             }
             else if (team2Score > team1Score)
             {
                 TeamEdit winner = new TeamEdit();
-                winner.WLRecord++;
-                winner.GamesPlayed++;
+                winner.WLRecord = team2WLRecord + 1;
+                winner.GamesPlayed = team2GamesPlayed + 1;
                 teamService.UpdateTeam(winner, team2Id);
 
                 TeamEdit loser = new TeamEdit();
-                loser.GamesPlayed++;
+                loser.GamesPlayed = team1GamesPlayed;
                 teamService.UpdateTeam(loser, team1Id);
             }
         }

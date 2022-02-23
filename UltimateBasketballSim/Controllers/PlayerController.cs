@@ -17,7 +17,8 @@ namespace UltimateBasketballSim.Controllers
             return playerService;
         }
 
-        public IHttpActionResult Post(PlayerCreate player)
+        [HttpPost]
+        public IHttpActionResult CreateAPlayer(PlayerCreate player)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -30,21 +31,24 @@ namespace UltimateBasketballSim.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Get()
+        [HttpGet]
+        public IHttpActionResult GetAllPlayers()
         {
             PlayerServices playerService = CreatePlayerServices();
             var player = playerService.GetPlayers();
             return Ok(player);
         }
 
-        public IHttpActionResult Get(int id)
+        [HttpGet]
+        public IHttpActionResult GetPlayerById(int id)
         {
             PlayerServices playerService = CreatePlayerServices();
             var player = playerService.GetPlayerById(id);
             return Ok(player);
         }
 
-        public IHttpActionResult Put(PlayerEdit player)
+        [HttpPut]
+        public IHttpActionResult EditAPlayer(PlayerEdit player)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -56,7 +60,8 @@ namespace UltimateBasketballSim.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Delete(int id)
+        [HttpDelete]
+        public IHttpActionResult DeletePlayerById(int id)
         {
             var service = CreatePlayerServices();
 

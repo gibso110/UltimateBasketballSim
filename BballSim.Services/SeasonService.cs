@@ -25,7 +25,9 @@ namespace BballSim.Services
         {
             Season seasonEntity = new Season()
             {
-                SeasonNumber = model.SeasonNumber
+                SeasonNumber = model.SeasonNumber,
+                LeagueId = model.LeagueId
+
             };
 
             using (var ctx = new ApplicationDbContext())

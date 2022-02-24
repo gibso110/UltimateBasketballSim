@@ -209,7 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LeaugeController.cs" />
+    <Compile Include="Controllers\LeagueController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\SeasonController.cs" />
     <Compile Include="Controllers\TeamController.cs" />

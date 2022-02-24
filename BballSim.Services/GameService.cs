@@ -68,6 +68,7 @@ namespace BballSim.Services
                     .Select(g =>
                     new GameList
                     {
+                        GameId = g.GameId,
                         Team1Id = g.Team1Id,
                         Team2Id = g.Team2Id,
                         GameDate = g.GameDate

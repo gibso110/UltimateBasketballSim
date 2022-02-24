@@ -1,4 +1,5 @@
-﻿using BballSim.Models.GameModels;
+﻿using BballSim.Data;
+using BballSim.Models.GameModels;
 using BballSim.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -8,7 +9,7 @@ using System.Web.Http;
 namespace UltimateBasketballSim.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/Game")]
+   // [RoutePrefix("api/Game")]
     public class GameController : ApiController
     {
         private GameService CreateGameService()
@@ -38,22 +39,10 @@ namespace UltimateBasketballSim.Controllers
         {
             var gameService = CreateGameService();
 
-            List<GameList> listToreturn = (List<GameList>)gameService.GetGameList();
+            var listToreturn = gameService.GetGameList();
 
             if (listToreturn != null)
                 return Ok(listToreturn);
-
-            return InternalServerError();
-        }
-
-
-        //update a game
-        [HttpPut]
-        public IHttpActionResult UpdateAGame([FromBody] int gameId, GameUpdate updatedGame)
-        {
-            GameService gameService = CreateGameService();
-            if (gameService.UpdateGame(gameId, updatedGame))
-                return Ok();
 
             return InternalServerError();
         }
@@ -82,6 +71,17 @@ namespace UltimateBasketballSim.Controllers
 
             return InternalServerError();
         }
+
         //play a game
+        [HttpPost]
+        public IHttpActionResult PlayAGame(int team1Id, int team2Id, int gameId)
+        {
+            var gameService = CreateGameService();
+
+            if (gameService.PlayAGame(team1Id, team2Id, gameId))
+                return Ok();
+
+            return InternalServerError();
+        }
     }
 }

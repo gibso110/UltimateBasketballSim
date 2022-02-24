@@ -1,9 +1,12 @@
-﻿namespace BballSim.Models.TeamModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BballSim.Models.TeamModels
 {
     public class TeamEdit
     {
-        // public int TeamId { get; set; }
-        public string Name { get; set; }
-
+        [Display(Name = "Win/Loss Record")]
+        public int WLRecord { get; set; }
+        [Display(Name = "Games Played")]
+        public int GamesPlayed { get; set; }
     }
 }

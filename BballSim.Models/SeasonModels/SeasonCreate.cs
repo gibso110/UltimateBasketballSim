@@ -9,5 +9,6 @@ namespace BballSim.Models.SeasonModels
     public class SeasonCreate
     {
         public int SeasonNumber { get; set; }
+        public int LeagueId { get; set; }
     }
 }

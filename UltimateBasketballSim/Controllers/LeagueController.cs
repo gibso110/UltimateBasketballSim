@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace UltimateBasketballSim.Controllers
 {
-    public class LeaugeController : ApiController
+    public class LeagueController : ApiController
     {
         [Authorize]
 
@@ -36,7 +36,7 @@ namespace UltimateBasketballSim.Controllers
 
         //Get List Of Leauges
         [HttpGet]
-        public IHttpActionResult GetListOfLeauges()
+        public IHttpActionResult GetListOfLeagues()
         {
             LeagueService leagueService = CreateLeaugeService();
             var listofLeagues = leagueService.GetAllLeagues();
@@ -70,7 +70,7 @@ namespace UltimateBasketballSim.Controllers
 
         //delete a league
         [HttpDelete]
-        public IHttpActionResult DeleteALeague([FromBody] int leaugeId)
+        public IHttpActionResult DeleteALeague(int leaugeId)
         {
             LeagueService leagueService = CreateLeaugeService();
             if (leagueService.DeleteALeague(leaugeId))

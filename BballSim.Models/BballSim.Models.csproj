@@ -65,6 +65,7 @@
 
     <Compile Include="PlayerModels\PlayerCreate.cs" />
     <Compile Include="PlayerModels\PlayerEdit.cs" />
+    <Compile Include="PlayerModels\PlayerEditTeamId.cs" />
     <Compile Include="PlayerModels\PlayerProperties.cs" />
 
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -14,8 +14,8 @@ namespace UltimateBasketballSim.Controllers
             var teamService = new TeamServices(userId);
             return teamService;
         }
-
-        public IHttpActionResult Post(TeamCreate team)
+        [HttpPost]
+        public IHttpActionResult CreateATeam(TeamCreate team)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -28,20 +28,21 @@ namespace UltimateBasketballSim.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Put(TeamEdit team)
+        [HttpPut]
+        public IHttpActionResult UpdateTeamById(TeamEdit team, int teamId)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var service = CreateTeamService();
 
-            if (!service.UpdateTeam(team))
+            if (!service.UpdateTeam(team, teamId))
                 return InternalServerError();
 
             return Ok();
         }
-
-        public IHttpActionResult Delete(int teamId)
+        [HttpDelete]
+        public IHttpActionResult DeleteTeamById(int teamId)
         {
             var service = CreateTeamService();
 
@@ -51,6 +52,7 @@ namespace UltimateBasketballSim.Controllers
             return Ok();
         }
 
+        [HttpGet]
         public IHttpActionResult GetTeamByTeamId(int teamId)
         {
             var service = CreateTeamService();
@@ -58,7 +60,8 @@ namespace UltimateBasketballSim.Controllers
             return Ok(team);
         }
 
-        public IHttpActionResult GetAllTeam()
+        [HttpGet]
+        public IHttpActionResult GetAllTeams()
         {
             TeamServices service = CreateTeamService();
             var team = service.GetAllTeams();

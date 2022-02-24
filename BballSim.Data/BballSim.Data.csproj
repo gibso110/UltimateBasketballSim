@@ -84,8 +84,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="ApplicationUser.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="IdentityModels.cs" />
+    <Compile Include="IdentityUserRoleConfiguration.cs" />
+    <Compile Include="IdentityUserLoginConfiguration.cs" />
     <Compile Include="League.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />

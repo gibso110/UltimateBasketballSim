@@ -11,7 +11,6 @@ namespace BballSim.Models.SeasonModels
     {
         public int SeasonId { get; set; }
         public int LeagueId { get; set; }
-        [Required]
         public int SeasonNumber { get; set; } = 1;
     }
 }

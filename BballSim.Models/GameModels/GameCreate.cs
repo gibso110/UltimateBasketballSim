@@ -7,12 +7,19 @@ namespace BballSim.Models.GameModels
     public class GameCreate
     {
 
-        [ForeignKey("Team"), Required]
+        [Range(1, 100, ErrorMessage = "Invalid Team ID")]
         public int Team1Id { get; set; }
-        [ForeignKey("Team"), Required]
+
+        [Range(1, 100, ErrorMessage = "Invalid Team ID")]
+
         public int Team2Id { get; set; }
-        public int Team1Score { get; set; }
-        public int Team2Score { get; set; }
+      
+        public int Team1Score { get; set; } = 0;
+        public int Team2Score { get; set; } = 0;
+
         public DateTime GameDate { get; set; }
+
+        [Required]
+        public int SeasonId { get; set; }
     }
 }

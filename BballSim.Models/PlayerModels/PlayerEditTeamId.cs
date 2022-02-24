@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BballSim.Models.PlayerModels
+{
+    public class PlayerEditTeamId
+    {
+        
+        public int TeamId { get; set; }
+    }
+}

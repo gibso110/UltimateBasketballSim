@@ -105,7 +105,7 @@ namespace BballSim.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-
+      
         //play a game, pass int two team IDs and a game ID
         public bool PlayAGame(int team1Id, int team2Id, int gameId)
         {

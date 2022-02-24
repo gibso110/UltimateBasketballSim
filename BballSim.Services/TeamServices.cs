@@ -1,6 +1,4 @@
-﻿using BballSim.Data;
-using BballSim.Models.TeamModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 

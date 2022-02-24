@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace BballSim.Services
 {
+        // Hope you get well soon Nick!
     public class TeamServices
     {
         private readonly Guid _userId;

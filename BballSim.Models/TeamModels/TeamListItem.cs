@@ -10,7 +10,6 @@ namespace BballSim.Models.TeamModels
         public int WLRecord { get; set; }
         [Display(Name = "Games Played")]
         public int GamesPlayed { get; set; }
-        //public List<Player> Players { get; set; }
 
     }
 }

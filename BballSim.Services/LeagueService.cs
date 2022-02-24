@@ -52,20 +52,19 @@ namespace BballSim.Services
         }
 
         //get leauge by id
-        public League GetLeagueByID(int leagueId)
+        public LeagueList GetLeagueByID(int leagueId)
         {
             using (var ctx = new ApplicationDbContext())
             {
-                League leagueToReturn = (League)ctx.Leagues
-                    .Where(l => l.LeagueId == leagueId)
-                    .Select(l =>
-                    new LeagueList
-                    {
-                        LeagueId = l.LeagueId,
-                        IsActive = l.IsActive
-                    });
+                var leagueToReturn = ctx.Leagues
+                    .Single(l => l.LeagueId == leagueId);
 
-                return leagueToReturn;
+
+                return new LeagueList
+                {
+                    LeagueId = leagueToReturn.LeagueId,
+                    IsActive = leagueToReturn.IsActive
+                };
             }
         }
 

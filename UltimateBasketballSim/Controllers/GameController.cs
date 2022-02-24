@@ -39,7 +39,7 @@ namespace UltimateBasketballSim.Controllers
         {
             var gameService = CreateGameService();
 
-            List<GameList> listToreturn = (List<GameList>)gameService.GetGameList();
+            var listToreturn = gameService.GetGameList();
 
             if (listToreturn != null)
                 return Ok(listToreturn);

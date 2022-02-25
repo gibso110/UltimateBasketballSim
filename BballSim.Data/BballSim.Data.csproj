@@ -90,7 +90,6 @@
     <Compile Include="IdentityUserRoleConfiguration.cs" />
     <Compile Include="IdentityUserLoginConfiguration.cs" />
     <Compile Include="League.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Season.cs" />

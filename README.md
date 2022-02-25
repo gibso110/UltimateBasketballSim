@@ -13,8 +13,8 @@ The following sections will cover functions and endpoints for all of Entities/Mo
 * [ Player](#Player)
 * [Team](#Team)
 * [Game](#Game)
-* [League](League)
-* [Season](Season)
+* [League](#League)
+* [Season](#Season)
 
 
 

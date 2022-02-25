@@ -11,10 +11,10 @@ Ultimate Baskeball Sim puts you into the General Manager's seat and lets you bui
 The following sections will cover functions and endpoints for all of Entities/Models that are incorporated into the game.
 
 * [ Player](#Player)
-* Team
-* Game
-* League
-* Season
+* [Team](#Team)
+* [Game](#Game)
+* [League](League)
+* [Season](Season)
 
 
 
@@ -84,7 +84,7 @@ This endpoint allows a user to delete a player with the corresponding ID entered
 This endpoint allows the user to run a function that will assign 5 players to a team that matches the given TeamID. This function will first check to see whether or not there are at least 5 free agents available, then assign 1 player of each position to the team.
 ***
 
-## Team
+### Team
 
 
 **POST api/Team/CreateATeam**
@@ -129,7 +129,7 @@ This endpoint allows a user select and view a team with the corresponding TeamID
 
 This endpoint allows a user to get an array containing all teams that have been created.
 
-## League
+### League
 
 **POST api/League/CreateALeague**
 ***
@@ -169,7 +169,7 @@ This endpoint will allow a user to update a league and change its status from ac
 
 This endpoint allows a user to delete an existing league with a corresponding LeagueID.
 
-## Season
+### Season
 
 **POST api/Season/CreateSeason**
 ***

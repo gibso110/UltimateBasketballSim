@@ -129,6 +129,55 @@ This endpoint allows a user select and view a team with the corresponding TeamID
 
 This endpoint allows a user to get an array containing all teams that have been created.
 
+### Game
+**POST api/Game/CreateGame**
+***
+* [Key] int GameId
+* [ForeignKey] int Team1ID
+* [ForeignKey] int Team2ID
+* int Team1Score
+* int Team2Score
+* [ForeignKey] int SeasonId
+
+This endpoint allows a user to create a game between two given teams within a season. The scores will default to zero until the game has been played.
+
+**GET api/Game/GetAllGames**
+***
+* [Key] int GameId
+* [ForeignKey] int Team1ID
+* [ForeignKey] int Team2ID
+* int Team1Score
+* int Team2Score
+* [ForeignKey] int SeasonId
+
+This endpoint allows a user to view all games that are on the schedule. They can see both played and unplayed games through this endpoint.
+
+**DELETE api/Game/DeleteAGame**
+***
+* [Key] int GameId
+
+This will allow a user to delete a game from the schedule. **IF A GAME IS DELETED AFTER IT HAS ALREADY BEEN PLAYED, THE W/L RECORD OF THE TEAM WILL NOT REFLECT THE CHANGE.**
+
+**GET api/Game/GetGameById?gameId={gameId}**
+***
+* [Key] int GameId
+* [ForeignKey] int Team1ID
+* [ForeignKey] int Team2ID
+* int Team1Score
+* int Team2Score
+* [ForeignKey] int SeasonId
+
+This endpoint will allow a user to select a game with the corresponding GameID.
+
+**POST api/Game/PlayAGame?team1Id={team1Id}&team2Id={team2Id}&gameId={gameId}**
+**** 
+* [Key] int GameId
+* [ForeignKey] int Team1ID
+* [ForeignKey] int Team2ID
+
+
+This endpoint will allow a user to play a game from the schedule between the two teams that are scheduled to play that game (team1 and team2). This endpoint will call the PlayAGame method, which will take the rating of the two teams (an average of all of the players on the teams roster) and simulate a game based on the ratings of the two teams. A winner will be determined by which ever team has the highest score, and the method will call the UpdateGame method to update the WLRecord and GamesPlayed properties of both teams.
+
 ### League
 
 **POST api/League/CreateALeague**
